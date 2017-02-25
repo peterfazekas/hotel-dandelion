@@ -1,6 +1,7 @@
 package hu.hotel.service;
 
 import hu.hotel.model.Booking;
+import hu.hotel.model.StayPeriod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,15 @@ public class DataParser {
         int numberOfGuests =  Integer.parseInt(data[4]);
         boolean breakfast =  Integer.parseInt(data[5]) == 1;
         String name = data[6];
-        return new Booking(id, room, arrival, departure, numberOfGuests, breakfast, name);
+        StayPeriod stayPeriod = new StayPeriod(arrival, departure);
+        return new Booking(id, room, stayPeriod, numberOfGuests, breakfast, name);
+    }
+
+    public StayPeriod getStayPeriod(Console console) {
+        String line = console.readLine();
+        String[] data = line.split(SEPARATOR);
+        int arrival = Integer.parseInt(data[0]);
+        int numberOfNights = Integer.parseInt(data[1]);
+        return new StayPeriod(arrival, arrival + numberOfNights);
     }
 }

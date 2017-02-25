@@ -1,6 +1,5 @@
 package hu.hotel.model;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,23 +12,21 @@ public class Booking {
 
     private final int id;
     private final int room;
-    private final int arrivalDay;
-    private final int departureDay;
+    private final StayPeriod stayPeriod;
     private final int numberOfGuests;
     private final boolean breakfast;
     private final String name;
     private final Season season;
 
-    public Booking(final int id, final int room, final int arrivalDay, final int departureDay, final int numberOfGuests,
-                   final boolean breakfast, final String name) {
+    public Booking(final int id, final int room, final StayPeriod stayPeriod, final int numberOfGuests,
+        final boolean breakfast, final String name) {
         this.id = id;
         this.room = room;
-        this.arrivalDay = arrivalDay;
-        this.departureDay = departureDay;
+        this.stayPeriod = stayPeriod;
         this.numberOfGuests = numberOfGuests;
         this.breakfast = breakfast;
         this.name = name;
-        season = Season.setSeason(arrivalDay);
+        season = Season.setSeason(stayPeriod.getArrivalDay());
     }
 
     public int getId() {
@@ -41,11 +38,11 @@ public class Booking {
     }
 
     public int getArrivalDay() {
-        return arrivalDay;
+        return stayPeriod.getArrivalDay();
     }
 
     public int getDepartureDay() {
-        return departureDay;
+        return stayPeriod.getDepartureDay();
     }
 
     public int getNumberOfGuests() {
@@ -65,14 +62,14 @@ public class Booking {
     }
 
     public int getTotalPrice() {
-        int roomPrice = getNumberOfNights() * season.getPrice();
-        int extraBedPrice = getTruckleBed() * numberOfGuests * Price.EXTRABED.getPrice();
-        int breakfastPrice = isBreakfast() ? numberOfGuests * getNumberOfNights() * Price.BREAKFAST.getPrice() : 0;
+        int roomPrice = getNumberOfNights() * getSeason().getPrice();
+        int extraBedPrice = getTruckleBed() * getNumberOfGuests() * Price.EXTRABED.getPrice();
+        int breakfastPrice = isBreakfast() ? getNumberOfGuests() * getNumberOfNights() * Price.BREAKFAST.getPrice() : 0;
         return roomPrice + extraBedPrice + breakfastPrice;
     }
 
     public int getNumberOfNights() {
-        return departureDay - arrivalDay;
+        return getDepartureDay() - getArrivalDay();
     }
 
     private int getTruckleBed() {
@@ -81,12 +78,9 @@ public class Booking {
 
     public Map<Month, Integer> getGuestNights() {
         Map<Month, Integer> guestNights = new TreeMap<>();
-        for (int day = arrivalDay; day < departureDay; day++) {
+        for (int day = getArrivalDay(); day < getDepartureDay(); day++) {
             Month month = Month.setMonth(day);
-            int night = 0;
-            if(guestNights.containsKey(month)) {
-                night = guestNights.get(month);
-            }
+            int night = guestNights.containsKey(month) ? guestNights.get(month) : 0;
             night += numberOfGuests ;
             guestNights.put(month, night);
         }
