@@ -16,7 +16,7 @@ public class DataFileLogger implements DataLogger {
 
     public DataFileLogger(String fileName) {
         this.fileName = PATH + fileName;
-        File log = new File(fileName);
+        File log = new File(this.fileName);
         log.delete();
     }
 

@@ -1,5 +1,9 @@
 package hu.hotel.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * @author Peter_Fazekas on 2017.02.25..
  */
@@ -73,6 +77,20 @@ public class Booking {
 
     private int getTruckleBed() {
         return numberOfGuests > ROOM_CAPACITY ? numberOfGuests - ROOM_CAPACITY : 0;
+    }
+
+    public Map<Month, Integer> getGuestNights() {
+        Map<Month, Integer> guestNights = new TreeMap<>();
+        for (int day = arrivalDay; day < departureDay; day++) {
+            Month month = Month.setMonth(day);
+            int night = 0;
+            if(guestNights.containsKey(month)) {
+                night = guestNights.get(month);
+            }
+            night += numberOfGuests ;
+            guestNights.put(month, night);
+        }
+        return guestNights;
     }
 
     @Override

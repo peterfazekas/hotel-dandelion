@@ -25,10 +25,10 @@ public enum Month {
         this.dayOfYear = dayOfYear;
     }
 
-    public static Month setMonth(int id) {
-        Month month = null;
+    public static Month setMonth(int day) {
+        Month month = JANUARY;
         for (Month thisMonth: Month.values()) {
-            if (thisMonth.monthId == id) {
+            if (day >= thisMonth.dayOfYear) {
                 month = thisMonth;
             }
         }

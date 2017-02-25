@@ -32,5 +32,6 @@ public class App {
     private void println() {
         System.out.println("2. feladat: a leghosszabb szállodai tartózkodás: " + bookingService.getLongestStay());
         bookingService.getTotalPrices(log);
+        System.out.println("4. feladat: " + bookingService.getTotalGuestNights());
     }
 }
