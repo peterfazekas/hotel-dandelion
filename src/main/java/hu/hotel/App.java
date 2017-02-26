@@ -38,6 +38,7 @@ public class App {
         System.out.println("4. feladat: " + bookingService.getTotalGuestNights());
         System.out.print("5. feladat: kérem adja meg a nap sorszámát és az eltöltendő éjszakák számát [x y]: ");
         StayPeriod stayPeriod = data.getStayPeriod(console);
-        bookingService.getTotalPrices(log);
+        System.out.println(bookingService.getFreeRooms(stayPeriod));
+        log.println(bookingService.getTotalPrices());
     }
 }

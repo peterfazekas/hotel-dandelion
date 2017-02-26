@@ -87,6 +87,10 @@ public class Booking {
         return guestNights;
     }
 
+    public boolean isRoomOccupiedOnCertainDay(int day) {
+        return (day >= getArrivalDay() && day < getDepartureDay());
+    }
+
     @Override
     public String toString() {
         return id + ":" + getTotalPrice();
