@@ -17,15 +17,15 @@ public enum Month {
     NOVEMBER(11, 305),
     DECEMBER(12, 335);
 
-    private int monthId;
-    private int dayOfYear;
+    private final int monthId;
+    private final int dayOfYear;
 
-    Month(int monthId, int dayOfYear) {
+    Month(final int monthId, final int dayOfYear) {
         this.monthId = monthId;
         this.dayOfYear = dayOfYear;
     }
 
-    public static Month setMonth(int day) {
+    public static Month setMonth(final int day) {
         Month month = JANUARY;
         for (Month thisMonth: Month.values()) {
             if (day >= thisMonth.dayOfYear) {

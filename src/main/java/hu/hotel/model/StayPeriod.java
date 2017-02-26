@@ -8,7 +8,7 @@ public class StayPeriod {
     private final int arrivalDay;
     private final int departureDay;
 
-    public StayPeriod(int arrivalDay, int departureDay) {
+    public StayPeriod(final int arrivalDay, final int departureDay) {
         this.arrivalDay = arrivalDay;
         this.departureDay = departureDay;
     }

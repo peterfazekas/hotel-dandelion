@@ -13,11 +13,11 @@ public class DataParser {
 
     private static final String SEPARATOR = " ";
 
-    public BookingService parse(List<String> lines) {
+    public BookingService parse(final List<String> lines) {
         return new BookingService(parseText(lines));
     }
 
-    private List<Booking> parseText(List<String> lines) {
+    private List<Booking> parseText(final List<String> lines) {
         List<Booking> bookings = new ArrayList<>();
         lines.remove(0);
         for (String line : lines) {
@@ -26,7 +26,7 @@ public class DataParser {
         return bookings;
     }
 
-    private Booking parseLine(String line) {
+    private Booking parseLine(final String line) {
         String[] data = line.split(SEPARATOR);
         int id = Integer.parseInt(data[0]);
         int room =  Integer.parseInt(data[1]);
@@ -39,7 +39,7 @@ public class DataParser {
         return new Booking(id, room, stayPeriod, numberOfGuests, breakfast, name);
     }
 
-    public StayPeriod getStayPeriod(Console console) {
+    public StayPeriod getStayPeriod(final Console console) {
         String line = console.readLine();
         String[] data = line.split(SEPARATOR);
         int arrival = Integer.parseInt(data[0]);

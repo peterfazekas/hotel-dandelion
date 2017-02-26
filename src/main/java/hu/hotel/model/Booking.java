@@ -19,7 +19,7 @@ public class Booking {
     private final Season season;
 
     public Booking(final int id, final int room, final StayPeriod stayPeriod, final int numberOfGuests,
-        final boolean breakfast, final String name) {
+                   final boolean breakfast, final String name) {
         this.id = id;
         this.room = room;
         this.stayPeriod = stayPeriod;
@@ -81,7 +81,7 @@ public class Booking {
         for (int day = getArrivalDay(); day < getDepartureDay(); day++) {
             Month month = Month.setMonth(day);
             int night = guestNights.containsKey(month) ? guestNights.get(month) : 0;
-            night += numberOfGuests ;
+            night += numberOfGuests;
             guestNights.put(month, night);
         }
         return guestNights;

@@ -14,9 +14,13 @@ public class DataFileLogger implements DataLogger {
 
     private final String fileName;
 
-    public DataFileLogger(String fileName) {
+    public DataFileLogger(final String fileName) {
         this.fileName = PATH + fileName;
-        File log = new File(this.fileName);
+        deleteFile();
+    }
+
+    private void deleteFile() {
+        File log = new File(fileName);
         log.delete();
     }
 

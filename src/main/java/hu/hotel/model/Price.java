@@ -5,11 +5,11 @@ package hu.hotel.model;
  */
 public enum Price {
 
-    FREE(0), BREAKFAST(1100), EXTRABED(2000), AUTUMN(8000), SPRING(9000), SUMMER(10000);
+    BREAKFAST(1100), EXTRABED(2000), AUTUMN(8000), SPRING(9000), SUMMER(10000);
 
-    private int price;
+    private final int price;
 
-    Price(int price) {
+    Price(final int price) {
         this.price = price;
     }
 

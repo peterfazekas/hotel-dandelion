@@ -6,15 +6,15 @@ package hu.hotel.model;
 public enum Season {
     SPRING(Month.JANUARY, Price.SPRING), SUMMER(Month.MAY, Price.SUMMER), AUTUMN(Month.SEPTEMBER, Price.AUTUMN);
 
-    private Month month;
-    private Price price;
+    private final Month month;
+    private final Price price;
 
-    Season(Month month, Price price) {
+    Season(final Month month, final Price price) {
         this.month = month;
         this.price = price;
     }
 
-    public static Season setSeason(int countOfDay) {
+    public static Season setSeason(final int countOfDay) {
         Season season = SPRING;
         for (Season thisSeason : Season.values()) {
             if(countOfDay >= thisSeason.month.getDayOfYear())

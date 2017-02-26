@@ -17,7 +17,7 @@ public class DataFileReader implements DataReader {
 
     private final String fileName;
 
-    public DataFileReader(String fileName) {
+    public DataFileReader(final String fileName) {
         this.fileName = fileName;
     }
 
